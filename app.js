@@ -2,8 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 
+process.env.NODE_ENV !== 'production' && require('dotenv').config();
+
 //require api route
-const indexApi = require('./api');
+const indexApi = require('./routes');
+const contactApi = require('./routes/contacts');
 // database
 mongoose.connect('mongodb://localhost:27017/phonebook', {
 	useNewUrlParser: true,
@@ -19,18 +22,26 @@ const app = express();
 
 // express body-parser
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	session({
-		secret: 'lions get scared',
+		secret: process.env.SESSSECRET,
 		resave: false,
 		saveUninitialized: false
 	})
 );
+// express middleware
+// app.use(function(req, res, next) {
+// 	next();
+// });
 
+app.get('/', (req, res) => {
+	res.send('hello world');
+});
 // routes setup
-app.use('/', indexApi);
+app.use(indexApi);
+app.use('/contact', contactApi);
 
 app.listen(3000, (err) => {
 	if (err) throw err;
