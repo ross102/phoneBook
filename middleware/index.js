@@ -44,7 +44,7 @@ module.exports = {
 			});
 	},
 	isloggedIn: (req, res, next) => {
-		let token = req.headers['Authorization'];
+		let token = req.headers['authorization'] || [ 'x-access-token' ];
 		if (!token) {
 			return res.status(401).json({
 				success: 'false',
