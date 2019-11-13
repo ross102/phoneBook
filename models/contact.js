@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate');
 
-const contactSchema = new Schema({
+const ContactSchema = new Schema({
 	name: String,
 	phone: Number,
 	created: {
@@ -10,4 +11,6 @@ const contactSchema = new Schema({
 	}
 });
 
-module.exports = mongoose.model('Contact', contactSchema);
+ContactSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('Contact', ContactSchema);

@@ -11,6 +11,7 @@ const contactApi = require('./routes/contacts');
 mongoose.connect('mongodb://localhost:27017/phonebook', {
 	useNewUrlParser: true,
 	useCreateIndex: true,
+	useFindAndModify: false,
 	useUnifiedTopology: true
 });
 // error messages from db

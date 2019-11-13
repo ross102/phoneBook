@@ -26,10 +26,10 @@ router.post('/register', validation, (req, res) => {
 						message: 'registration successful'
 					});
 				})
-				.catch((err) => {
+				.catch((error) => {
 					return res.status(500).json({
 						success: 'false',
-						msg: err
+						msg: error.message
 					});
 				});
 		});
@@ -78,10 +78,10 @@ router.post('/login', (req, res) => {
 				}
 			});
 		})
-		.catch((err) => {
+		.catch((error) => {
 			return res.status(500).json({
 				success: 'false',
-				msg: err
+				msg: error.message
 			});
 		});
 });
