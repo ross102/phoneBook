@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const session = require('express-session');
 
 process.env.NODE_ENV !== 'production' && require('dotenv').config();
 
@@ -25,20 +24,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-	session({
-		secret: process.env.SESSSECRET,
-		resave: false,
-		saveUninitialized: false
-	})
-);
 // express middleware
 // app.use(function(req, res, next) {
 // 	next();
 // });
 
 app.get('/', (req, res) => {
-	res.send('hello world');
+	res.send('hello Harsh Ajmera');
 });
 // routes setup
 app.use(indexApi);

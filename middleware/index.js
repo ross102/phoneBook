@@ -44,7 +44,7 @@ module.exports = {
 			});
 	},
 	isloggedIn: (req, res, next) => {
-		let token = req.headers['authorization'];
+		let token = req.headers['Authorization'];
 		if (!token) {
 			return res.status(401).json({
 				success: 'false',
@@ -57,7 +57,7 @@ module.exports = {
 			if (err) {
 				return res.status(401).json({ success: false, message: err });
 			}
-			// req.user = verified
+			req.user = verified;
 			return next();
 		});
 	},
